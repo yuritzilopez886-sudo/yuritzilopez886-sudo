@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TETRA-PET — Comunidad que Avanza</title>
+  <meta name="description"
+    content="Proyecto comunitario de reciclaje de PET y Tetra Pak.">
+ 
+  <!-- Fuentes de Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?
+    family=Unbounded:wght@400;700;900&
+    family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;
+    1,9..40,300&display=swap" rel="stylesheet">
+ 
+  <style>
+    /* Reset global */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: #F8FDF9;
+    }
+    /*-------------------------------------css------------------delabarra-----------------------------*/
+.top-bar {
+    background: #3A0CA3; /* Color de fondo púrpura */
+    color: #FFD700; /* Texto dorado */
+    font-size: 1rem; /* Tamaño de letra más grande */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más moderna */
+    text-align: center;
+    padding: 9px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.top-bar strong { 
+    color: #FF6F61; /* Color coral para resaltar */
+}
+
+.top-close {
+    position: absolute; 
+    right: 16px;
+    background: none; 
+    border: none;
+    color: rgba(255,255,255,.75); /* Más visible */
+    cursor: pointer; 
+    font-size: 1.2rem; /* Botón más grande */
+    font-family: 'Arial Black', Gadget, sans-serif; /* Fuente distinta para el botón */
+}      
+/*---------------------------------------------css de la barra de navegacion--------------------------------------------------------*/
+  .navbar {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(248,253,249,.96);
+    backdrop-filter: blur(16px);
+    border-bottom: 2px solid #B7E4C7;
+    box-shadow: 0 2px 24px rgba(45,106,79,.08);
+    padding: 0 40px; height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .nav-logo {
+    display: flex; align-items: center;
+    gap: 10px; text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg,#726bd6,#52a8b7);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-text {
+    font-family: "Bauhaus 93", sans-serif;
+    font-weight: 900; font-size: .9rem;
+    color: #6b90d6; line-height: 1.1;
+  }
+  .nav-links {
+    display: flex; gap: 4px; list-style: none;
+  }
+  .nav-links a {
+    padding: 6px 14px; font-size: .83rem;
+    font-weight: 600; color: #6d6bd6;
+    border-radius: 50px; text-decoration: none;
+    transition: all .25s;
+  }
+  .nav-links a:hover {
+    color: #A46DE8; background: #E8F5EE;
+  }
+  .btn-nav {
+    padding: 10px 22px; border-radius: 50px;
+    background: #382d6a; color: white;
+    font-size: .83rem; font-weight: 700;
+    border: none; cursor: pointer;
+    transition: all .25s;
+  }
+  .btn-nav:hover { background: #1b354d; transform: translateY(-2px); }
+/*---------------------------------------------------------animacion css-----------------------------------------------*/
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-14px); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+/*--------------------------------------------------------css del hero----------------------------------------------------------*/
+  .hero {
+    background: linear-gradient(135deg,
+      #2d1b4d 0%, #2d3b6a 40%,
+      #1B4F72 80%, #16868a 100%);
+    color: white; padding: 90px 40px 80px;
+    position: relative; overflow: hidden;
+    min-height: 88vh;
+    display: flex; align-items: center;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 60px; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-titulo {
+    font-family: "Unbounded", sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 900; line-height: 1.1;
+    margin-bottom: 18px;
+    animation: fadeUp .7s .15s ease both;
+  }
+  .hero-titulo .marca { color: #F5C976; display: block; }
+  .hero-desc {
+    font-size: 1.05rem; opacity: .8;
+    max-width: 480px; font-weight: 300;
+    margin-bottom: 36px; line-height: 1.8;
+    animation: fadeUp .7s .3s ease both;
+  }
+/*---------------------------------------------css de la tarjeta----------------------------------------------------------------------------------*/
+  .sec-que { padding: 88px 40px; }
+  .sec-titulo {
+    font-family: "Cascadia Code", sans-serif;
+    font-size: clamp(1.6rem,3vw,2.4rem);
+    font-weight: 900; color: #7b86e8;
+    text-align: center; margin-bottom: 48px;
+  }
+  .sec-titulo span { color: #54e3d0; }
+  .valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+    max-width: 1060px; margin: 0 auto;
+  }
+  .valor-card {
+    background: white;
+    border-radius: 16px; padding: 30px 24px;
+    border: 1.5px solid #B7E4C7;
+    transition: all .28s cubic-bezier(.4,0,.2,1);
+    position: relative; overflow: hidden;
+  }
+  .valor-card::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,#52b4b7,#442ec1);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .35s ease;
+  }
+  .valor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(45,106,79,.22);
+    border-color: #9393C4;
+  }
+  .valor-card:hover::before { transform: scaleX(1); }
+  .valor-ico {
+    width: 56px; height: 56px; background: #E8F5EE;
+    border-radius: 14px;
+    display: flex; align-items: center;
+    justify-content: center; font-size: 1.6rem;
+    margin-bottom: 18px;
+    transition: all .28s;
+  }
+  .valor-card:hover .valor-ico {
+    background: #B7E4C7; transform: scale(1.08) rotate(-3deg);
+  }
+  .valor-card h3 {
+    font-family: "Eras Demi ITC", sans-serif;
+    font-size: .88rem; font-weight: 700;
+    color: #9393C4; margin-bottom: 10px;
+  }
+  .valor-card p { font-size: .87rem; color: #C493B1; line-height: 1.65; }
+/*------------------------------------------------css del blog----------------------------------------------------------------------------*/
+  .sec-blog {
+    background: #F8FDF9;
+    padding: 88px 40px;
+    font-family: "Cooper Black", sans-serif;
+  }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    max-width: 1060px; margin: 48px auto 0;
+  }
+  .blog-card {
+    background: white;
+    border-radius: 16px;
+    border: 1.5px solid #B7E4C7;
+    overflow: hidden;
+    transition: all .28s;
+  }
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(45,106,79,.15);
+  }
+  .blog-card-header {
+    height: 140px;
+    display: flex; align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+  }
+  .blog-card-body { padding: 24px; }
+  .blog-tag {
+    display: inline-block;
+    background: #e8f1f5; color: #9394c4;
+    font-size: .65rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 50px;
+    margin-bottom: 12px;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .blog-card-body h3 {
+    font-family: "Arial Rounded MT Bold", sans-serif;
+    font-size: .92rem; font-weight: 700;
+    color: #566ed4; margin-bottom: 8px;
+  }
+  .blog-card-body p {
+    font-size: .85rem; color: #498691;
+    line-height: 1.65; margin-bottom: 18px;
+  }
+  .blog-meta {
+    display: flex; justify-content: space-between;
+    align-items: center; font-size: .75rem;
+    color: #4755a6;
+  }
+  .btn-leer {
+    display: inline-block;
+    padding: 7px 16px; border-radius: 50px;
+    background: #2d546a; color: white;
+    font-size: .78rem; font-weight: 700;
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .btn-leer:hover { background: #1B4D38; }
+/* ----------------------------------------css delk formulario -----------------------------------------------------------*/
+.sec-contacto {
+    background: #F4F6F9; /* Fondo gris claro */
+    padding: 88px 40px;
+    font-family: "Lato", sans-serif; /* Fuente limpia y moderna */
+}
+
+.contacto-form {
+    max-width: 600px; 
+    margin: 48px auto 0;
+    background: #FFFFFF; 
+    border-radius: 20px;
+    padding: 36px;
+    border: 1.5px solid #DDD;
+    box-shadow: 0 8px 32px rgba(0,0,0,.12);
+    font-family: "Roboto", sans-serif; /* Fuente clara para formularios */
+}
+
+.form-group { margin-bottom: 20px; }
+
+.form-group label {
+    display: block; 
+    font-size: .85rem;
+    font-weight: 600; 
+    color: #6C63FF; /* Violeta moderno */
+    margin-bottom: 7px;
+    font-family: "Montserrat", sans-serif; /* Fuente distinta para etiquetas */
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%; 
+    padding: 12px 16px;
+    border: 1.5px solid #CCC;
+    border-radius: 10px; 
+    font-size: .9rem;
+    font-family: "Open Sans", sans-serif; /* Fuente legible para campos */
+    outline: none; 
+    transition: border .2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #6C63FF;
+}
+
+.btn-enviar {
+    width: 100%; 
+    padding: 13px;
+    border-radius: 50px;
+    background: #6C63FF; 
+    color: #FFFFFF;
+    font-size: .9rem; 
+    font-weight: 700;
+    border: none; 
+    cursor: pointer;
+    transition: all .25s;
+    font-family: "Montserrat", sans-serif; /* Fuente fuerte para botones */
+}
+
+.btn-enviar:hover {
+    background: #00C9A7; /* Verde agua en hover */
+    transform: translateY(-2px);
+}    
+/* -------------------------------------------------css del footer------------------------------------*/
+.footer {
+       background: #0d2f1f; /* Verde oscuro elegante */
+    color: rgba(255,255,255,.85);
+    font-family: "Poppins", sans-serif;
+}
+
+.footer-bottom {
+    padding: 24px 40px;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    flex-wrap: wrap;
+    gap: 14px;
+       border-top: 1px solid rgba(255,255,255,.2);
+}
+
+.footer-bottom p {
+    font-size: .8rem;
+    color: rgba(255,255,255,.45);
+    font-family: "Roboto", sans-serif; /* Fuente legible para texto pequeño */
+}
+
+/* MODO OSCURO */
+    body.dark { background: #001a12; color: #d4f5e9 }
+    body.dark .navbar { background: #003322; border-color: #66cc99; }
+    body.dark .nav-links a { color: #a8f0d4; }
+    body.dark .valor-card, body.dark .form-nota, body.dark .contacto-form { background: #1a2f4d; /* Azul oscuro */
+border-color:  #0d1a33; color: #cce6ff; }
+    body.dark .sec-blog { background: #0a1a2b; }
+    body.dark .sec-titulo { color: #3399ff; }
+
+    /* Animaciones */
+    .oculto { opacity: 0; transform: translateY(30px); transition: 0.6s all ease-out; }
+    .visible { opacity: 1; transform: translateY(0); }
+
+}
+ </style>
+</head>
+<body> 
+
+<!-----------------------------------------------------html de la barrra----------------------------->
+<div class="top-bar" id="topBar">
+  <span>
+    ♻️ <strong>¡jornada de limpieza!</strong>
+    centro de chicahua — 7:00 a 12:00 h
+  </span>
+  <span>📍 Ya tenemos <strong>5 puntos</strong> activos</span>
+  <button class="top-close"
+    onclick="document.getElementById('topBar').style.display='none'">
+    ✕
+  </button>
+</div>
+<!--------------------------------------------html de la barra de navegacion----------------------------------------------------->
+<nav class="navbar">
+  <a href="#inicio" class="nav-logo">
+    <div class="nav-logo-mark">
+      <!-- Logo SVG simple -->
+      <svg width="22" height="22" viewBox="0 0 160 160"
+        xmlns="http://www.w3.org/2000/svg">
+        <polygon points="80,16 144,136 16,136"
+          fill="white" opacity=".9"/>
+        <text x="80" y="104" font-size="28" font-weight="900"
+          fill="rgba(183,228,199,.9)" text-anchor="middle"
+          font-family="sans-serif">TP</text>
+      </svg>
+    </div>
+    <div>
+      <div class="nav-logo-text">TETRA-PET</div>
+      <div style="font-size:.6rem;color:#7F8C8D;font-style:italic">
+        Comunidad que Avanza</div>
+    </div>
+  </a>
+ 
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#que-hacemos">¿Que hacemos?</a></li>
+    <li><a href="#como-participar">Como participar</a></li>
+    <li><a href="#puntos">Puntos</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+ 
+  <button class="btn-nav">♻️ Participar</button>
+  <button class="btn-nav" onclick="toggleDark()">🌙</button>
+</nav>
+<!------------------------------------------------------htmml del hero----------------------------------------------------------------------->
+
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div>
+      <h1 class="hero-titulo">
+        <span class="marca">TETRA-PET</span>
+        Comunidad<br>que Avanza
+      </h1>
+      <p class="hero-desc">
+        Somos un movimiento comunitario comprometido
+        con la recoleccion y reciclaje responsable de
+        envases PET y Tetra Pak.
+      </p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;
+        margin-bottom:44px;">
+        <button style="padding:13px 28px;border-radius:50px;
+          background:#F4D03F;color:#1a3a25;font-size:.88rem;
+          font-weight:700;border:none;cursor:pointer;">
+          📍 Encuentra tu punto
+        </button>
+        <a href="#como-participar" style="padding:13px 28px;
+          border-radius:50px;color:white;
+          border:2px solid rgba(255,255,255,.35);
+          font-size:.88rem;font-weight:700;
+          text-decoration:none;">
+          Como participar →
+        </a>
+      </div>
+      <!-- Estadisticas -->
+      <div style="display:flex;gap:32px;flex-wrap:wrap;">
+        <div>
+          <span style="font-family:Unbounded,sans-serif;
+            font-size:1.6rem;font-weight:900;color:#B7E4C7;">
+            +550 kg</span>
+          <div style="font-size:.72rem;opacity:.6;
+            text-transform:uppercase;">Al mes</div>
+        </div>
+        <div>
+          <span style="font-family:Unbounded,sans-serif;
+            font-size:1.6rem;font-weight:900;color:#B7E4C7;">
+            1,100</span>
+          <div style="font-size:.72rem;opacity:.6;
+            text-transform:uppercase;">Familias</div>
+        </div>
+        <div>
+          <span style="font-family:Unbounded,sans-serif;
+            font-size:1.6rem;font-weight:900;color:#B7E4C7;">
+            3</span>
+          <div style="font-size:.72rem;opacity:.6;
+            text-transform:uppercase;">Puntos activos</div>
+        </div>
+      </div>
+    </div>
+    <!-- Logo animado derecha -->
+    <div style="background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:20px;padding:36px;text-align:center;">
+      <div style="font-size:6rem;
+        animation:float 5s ease-in-out infinite;">♻️</div>
+      <h3 style="font-family:Unbounded,sans-serif;
+        font-size:1.3rem;font-weight:900;color:white;
+        margin-top:16px;">TETRA-PET</h3>
+      <p style="font-size:.8rem;opacity:.55;
+        margin-top:4px;font-style:italic;">
+        Comunidad que Avanza</p>
+    </div>
+  </div>
+</section>
+
+<!----------------------------------------------------html de la tarjeta------------------------------------------------------------------------------------------>
+<section class="sec-que" id="que-hacemos">
+  <h2 class="sec-titulo">
+    ¿Que hace <span>TETRA-PET</span>?
+  </h2>
+  <div class="valores-grid">
+ 
+    <div class="valor-card">
+      <div class="valor-ico">♻️</div>
+      <h3>Recolectamos envases PET</h3>
+      <p>Disponemos puntos de recolección en escuelas, parques y mercados para recibir botellas.</p>
+    </div>
+    <div class="valor-card">
+  <div class="valor-ico">📦</div>
+  <h3>Reciclamos Tetra Pak</h3>
+  <p>Recolectamos envases multicapa para aprovecharlos nuevamente.</p>
+</div>
+
+<div class="valor-card">
+  <div class="valor-ico">🌱</div>
+  <h3>Educamos a la comunidad</h3>
+  <p>Llevamos a cabo iniciativas que destacan la importancia de reciclar.</p>
+</div> 
+<div class="valor-card">
+  <div class="valor-ico">🤝</div>
+  <h3>Unimos a la comunidad</h3>
+  <p>Impulsamos la colaboración ciudadana en acciones de cuidado del entorno.</p>
+</div>
+
+<div class="valor-card">
+  <div class="valor-ico">🔄</div>
+  <h3>Transformamos residuos</h3>
+  <p>Transformamos materiales reciclados en productos prácticos.</p>
+</div>
+
+<div class="valor-card">
+  <div class="valor-ico">📊</div>
+  <h3>Medimos impacto</h3>
+  <p>Evaluamos y registramos el impacto ambiental derivado de las actividades colectivas.</p>
+</div>
+ 
+    <!-- Repite para: Tetra Pak, Comunidad,
+         Transformamos, Educamos, Medimos -->
+ 
+  </div>
+</section>
+
+<!-----------------------------------------------------------html del blog--------------------------------------------------------------------------------->
+<section class="galeria" id="galeria">
+  <h2 class="sec-titulo">
+      <span>GALERIA</span> de fotos
+      <div class="valores-grid">
+    <div class="valor-card">
+  <img src="PASTICO.jpg" height="400" width="500">
+  </div>
+  </div>
+   <div class="valores-grid">
+    <div class="valor-card">
+  <img src="Diseño sin título (4).jpg" height="300" width="300">
+  <img src="2.jpg" height="300" width="300">
+  <img src="100.jpg" height="300" width="300">
+  </div>
+  </div>
+   <div class="valores-grid">
+    <div class="valor-card">
+ <img src="PET.jpeg" height="400" width="500">
+ </div>
+ </div>
+  <div class="valores-grid">
+    <div class="valor-card">
+  <img src="11.jpg" height="300" width="300">
+  <img src="3.jpg" height="300" width="300">
+  <img src="7.jpg" height="300" width="300">
+  </div>
+  </div>
+
+</section>
+<!--------------------------------------------------------------------asdf-->
+<section class="sec-blog" id="blog">
+  <div style="text-align:center;max-width:1060px;margin:0 auto;">
+    <h2 class="sec-titulo">
+      Nuestro <span>Blog</span>
+    </h2>
+    <p style="color:#7F8C8D;max-width:520px;
+      margin:0 auto;line-height:1.8;">
+      Noticias, reportes mensuales y consejos
+      sobre reciclaje en nuestra comunidad.
+    </p>
+  </div>
+  <div class="blog-grid">
+ 
+    <div class="blog-card">
+      <div class="blog-card-header"
+        style="background:linear-gradient(135deg,#1a4731,#2D6A4F)">
+        ♻️
+      </div>
+      </div>
+      <div class="blog-card-body">
+        <span class="blog-tag">Reporte</span>
+        <h3>Logramos abril</h3>
+        <p>Gracias a la participacion de
+        los alumnos del cecyte, este mes fue uno de los mejores meses.</p>
+        <div class="blog-meta">
+          <span>📅 Abril 2026</span>
+          <a href="#" class="btn-leer">Leer →</a>
+        </div>
+      </div>
+    </div>
+      <div class="blog-card">
+      <div class="blog-card-header"
+        style="background:linear-gradient(135deg,#47391a,#422d6a)">
+        ♻️
+      </div>
+      <div class="blog-card-body">
+        <span class="blog-tag">Reporte</span>
+        <h3>Logramso recolectar tetrapack en abril</h3>
+        <p>Gracias a la participacion de
+        los alumnos </p>
+        <div class="blog-meta">
+          <span>📅 Abril 2026</span>
+          <a href="#" class="btn-leer">Leer →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-----------------------------------------------------------no se que sea------------------------------------------------------------------------>
+ <!-- NOTA: Este bloque va al final de la seccion #blog -->
+ 
+<div id="blog-notas" style="max-width:700px;margin:48px auto 0;
+  background:white;border-radius:20px;padding:32px;
+  border:1.5px solid #B7E4C7;">
+ 
+  <h3 style="font-family:Unbounded,sans-serif;
+    font-size:1rem;color:#1B4D38;margin-bottom:8px;">
+    📝 Escribe tu nota comunitaria
+  </h3>
+  <p style="font-size:.85rem;color:#7F8C8D;margin-bottom:18px;">
+    Las notas se guardan en tu navegador
+  </p>
+ 
+  <input id="nota-titulo"
+    placeholder="Titulo de tu nota..."
+    style="width:100%;padding:12px 16px;
+      border:1.5px solid #B7E4C7;
+      border-radius:10px;font-size:.9rem;
+      margin-bottom:12px;font-family:DM Sans,sans-serif;
+      outline:none;">
+ 
+  <textarea id="nota-texto"
+    placeholder="Escribe aqui tu mensaje, aviso o relato..."
+    rows="4"
+    style="width:100%;padding:12px 16px;
+      border:1.5px solid #B7E4C7;
+      border-radius:10px;font-size:.9rem;
+      font-family:DM Sans,sans-serif;
+      resize:vertical;outline:none;
+      margin-bottom:12px;"></textarea>
+ 
+  <button onclick="guardarNota()"
+    style="padding:11px 24px;border-radius:50px;
+      background:#2D6A4F;color:white;
+      font-size:.88rem;font-weight:700;
+      border:none;cursor:pointer;">
+    💾 Guardar nota
+  </button>
+ 
+  <div id="lista-notas"
+    style="margin-top:24px;
+      display:flex;flex-direction:column;gap:12px;">
+  </div>
+</div>
+ 
+<script>
+  // Cargar notas guardadas al abrir la pagina
+  window.addEventListener("DOMContentLoaded", () => {
+    mostrarNotas();
+  });
+ 
+  function guardarNota() {
+    const titulo = document.getElementById("nota-titulo").value.trim();
+    const texto  = document.getElementById("nota-texto").value.trim();
+    if (!titulo || !texto) {
+      alert("Por favor escribe un titulo y el texto de la nota.");
+      return;
+    }
+    // Leer notas existentes (array en JSON)
+    const notas = JSON.parse(
+      localStorage.getItem("tetrapetNotas") || "[]"
+    );
+    notas.unshift({
+      titulo,
+      texto,
+      fecha: new Date().toLocaleDateString("es-MX")
+    });
+    localStorage.setItem("tetrapetNotas", JSON.stringify(notas));
+    // Limpiar campos
+    document.getElementById("nota-titulo").value = "";
+    document.getElementById("nota-texto").value  = "";
+    mostrarNotas();
+  }
+ 
+  function mostrarNotas() {
+    const notas = JSON.parse(
+      localStorage.getItem("tetrapetNotas") || "[]"
+    );
+    const lista = document.getElementById("lista-notas");
+    lista.innerHTML = notas.map((n, i) => `
+      <div style="background:#F0FAF4;border-radius:12px;
+        padding:16px;border:1px solid #B7E4C7;">
+        <div style="display:flex;justify-content:space-between;
+          align-items:center;margin-bottom:6px;">
+          <strong style="font-size:.9rem;color:#1B4D38;">
+            ${n.titulo}</strong>
+          <span style="font-size:.72rem;color:#B2BABB;">
+            ${n.fecha}</span>
+        </div>
+        <p style="font-size:.85rem;color:#7F8C8D;
+          line-height:1.6;">${n.texto}</p>
+        <button onclick="borrarNota(${i})"
+          style="margin-top:8px;padding:4px 12px;
+            border-radius:50px;background:#fee2e2;
+            color:#dc2626;border:none;cursor:pointer;
+            font-size:.75rem;">
+          🗑️ Eliminar
+        </button>
+      </div>
+    `).join("");
+  }
+ 
+  function borrarNota(index) {
+    const notas = JSON.parse(
+      localStorage.getItem("tetrapetNotas") || "[]"
+    );
+    notas.splice(index, 1);
+    localStorage.setItem("tetrapetNotas", JSON.stringify(notas));
+    mostrarNotas();
+  }
+</script>
+<!---------------------------------------html del formulario----------------------------------------------------------->
+<section class="sec-contacto" id="contacto">
+  <h2 class="sec-titulo" style="text-align:center">
+    Contacta a <span>TETRA-PET</span>
+  </h2>
+  <div class="contacto-form">
+    <div class="form-group">
+      <label for="nombre">Tu nombre</label>
+      <input type="text" id="nombre"
+        placeholder="Ej: Maria Lopez">
+    </div>
+     <div class="form-group">
+      <label for="propuestas">Propuestas</label>
+      <textarea id="propuestas" rows="3"
+        placeholder="Escribe tu propuesta aqui...">
+      </textarea>
+    </div>
+    <div class="form-group">
+      <label for="correo">Correo electronico</label>
+      <input type="email" id="correo"
+        placeholder="ejemplo@correo.com">
+    </div>
+    <div class="form-group">
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" rows="5"
+        placeholder="Escribe tu mensaje aqui...">
+      </textarea>
+    </div>
+    <button class="btn-enviar"
+      onclick="alert('Mensaje enviado. ¡Gracias!')">
+      ✉️ Enviar mensaje
+    </button>
+  </div>
+</section>
+<!-----------------------------html del footer------------------------------------------------------------------------------->
+<footer class="footer">
+  <!-- CTA de cierre -->
+  <div style="background:linear-gradient(135deg,
+    #3900bd,#095ab6,#00a9d3);padding:64px 40px;
+    text-align:center;">
+    <h2 style="font-family:Unbounded,sans-serif;
+      font-size:clamp(1.6rem,3vw,2.4rem);
+      font-weight:900;color:white;margin-bottom:12px;">
+      ¿Listo para unirte a
+      <span style="color:#B7E4C7;">TETRA-PET</span>?
+    </h2>
+    <p style="font-size:.95rem;opacity:.75;
+      max-width:480px;margin:0 auto 30px;">
+      Encuentra el punto mas cercano y
+      forma parte de la comunidad.
+    </p>
+    <a href="#puntos"
+      style="padding:13px 28px;border-radius:50px;
+        background:#ffffff;color:#1a3a25;
+        font-size:.88rem;font-weight:700;
+        text-decoration:none;">
+      📍 Ver puntos de recoleccion
+    </a>
+  </div>
+ 
+  <!-- Copyright -->
+  <div class="footer-bottom">
+    <p>© 2026 TETRA-PET — Todos los derechos reservados.</p>
+    <div style="display:flex;align-items:center;gap:7px;
+      background:rgba(82,183,136,.07);
+      border:1px solid rgba(82,183,136,.18);
+      border-radius:50px;padding:7px 16px;
+      font-size:.72rem;color:#B7E4C7;">
+      ♻️ Proyecto Ecologico Comunitario
+    </div>
+  </div>
+</footer>
+<script>
+  // Modo Oscuro
+  function toggleDark() {
+    document.body.classList.toggle("dark");
+  }
+
+  // Sistema de Notas Unificado
+  function guardarNota() {
+    const titulo = document.getElementById("nota-titulo").value.trim();
+    const texto  = document.getElementById("nota-texto").value.trim();
+    
+    if (!titulo || !texto) {
+      alert("Por favor completa los campos.");
+      return;
+    }
+const notas = JSON.parse(localStorage.getItem("tetrapet_notas") || "[]");
+    notas.unshift({ titulo, texto, fecha: new Date().toLocaleDateString() });
+    localStorage.setItem("tetrapet_notas", JSON.stringify(notas));
+    
+    document.getElementById("nota-titulo").value = "";
+    document.getElementById("nota-texto").value = "";
+    mostrarNotas();
+  }
+  function mostrarNotas() {
+    const notas = JSON.parse(localStorage.getItem("tetrapet_notas") || "[]");
+    const lista = document.getElementById("lista-notas");
+    lista.innerHTML = notas.map((n, i) => `
+      <div style="background:#f8fafc; padding:15px; border-radius:10px; border:1px solid #e2e8f0; color:#333;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+          <strong style="color:var(--verde-oscuro)">${n.titulo}</strong>
+          <small style="color:#94a3b8">${n.fecha}</small>
+        </div>
+        <p style="font-size:0.9rem; line-height:1.4;">${n.texto}</p>
+        <button onclick="borrarNota(${i})" style="margin-top:10px; background:none; border:none; color:#ef4444; cursor:pointer; font-size:0.75rem;">🗑 Eliminar</button>
+      </div>
+    `).join("");
+  }
+function borrarNota(index) {
+    const notas = JSON.parse(localStorage.getItem("tetrapet_notas") || "[]");
+    notas.splice(index, 1);
+    localStorage.setItem("tetrapet_notas", JSON.stringify(notas));
+    mostrarNotas();
+  }
+
+  // Animaciones al hacer scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) entry.target.classList.add("visible");
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.valor-card, .form-nota, .galeria-grid img').forEach(el => {
+    el.classList.add('oculto');
+    observer.observe(el);
+  });
+
+  // Carga inicial
+  window.onload = mostrarNotas;
+
+
+  function mostrarNotas() {
+    const notas = JSON.parse(localStorage.getItem("tetrapet_notas") || "[]");
+    const lista = document.getElementById("lista-notas");
+    const contador = document.getElementById("contador-notas");
+
+    // Actualiza el texto del contador
+    if (contador) {
+      contador.innerText = `Notas publicadas: ${notas.length}`;
+    }
+
+    // Dibuja las notas
+    lista.innerHTML = notas.map((n, i) => `
+      <div style="background:#f8fafc; padding:15px; border-radius:10px; border:1px solid #e2e8f0; color:#333;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+          <strong style="color:var(--verde-oscuro)">${n.titulo}</strong>
+          <small style="color:#94a3b8">${n.fecha}</small>
+        </div>
+        <p style="font-size:0.9rem; line-height:1.4;">${n.texto}</p>
+        <button onclick="borrarNota(${i})" style="margin-top:10px; background:none; border:none; color:#ef4444; cursor:pointer; font-size:0.75rem;">🗑 Eliminar</button>
+      </div>
+    `).join("");
+
+    function guardarNota() {
+    const titulo = document.getElementById("nota-titulo").value.trim();
+    const texto  = document.getElementById("nota-texto").value.trim();
+    const categoria = document.getElementById("nota-categoria").value; // Obtiene la categoría
+    
+    if (!titulo || !texto) {
+      alert("Por favor completa los campos.");
+      return;
+    }
+
+    const notas = JSON.parse(localStorage.getItem("tetrapet_notas") || "[]");
+    // Ahora guardamos también la categoría en el objeto
+    notas.unshift({ 
+      titulo, 
+      texto, 
+      categoria, 
+      fecha: new Date().toLocaleDateString() 
+    });
+    
+    localStorage.setItem("tetrapet_notas", JSON.stringify(notas));
+    
+    document.getElementById("nota-titulo").value = "";
+    document.getElementById("nota-texto").value = "";
+    mostrarNotas();
+  }
+
+  function mostrarNotas() {
+    const notas = JSON.parse(localStorage.getItem("tetrapet_notas") || "[]");
+    const lista = document.getElementById("lista-notas");
+    const contador = document.getElementById("contador-notas");
+
+    if (contador) contador.innerText = `Notas publicadas: ${notas.length}`;
+
+    lista.innerHTML = notas.map((n, i) => {
+      // Definimos el color de la etiqueta según la categoría
+      let colorEtiqueta = "#FEF3C7"; // Por defecto Aviso (Amarillo)
+      if (n.categoria === "Reporte") colorEtiqueta = "#DBEAFE"; // Azul
+      if (n.categoria === "Propuesta") colorEtiqueta = "#DCFCE7"; // Verde
+
+      return `
+        <div style="background:#f8fafc; padding:15px; border-radius:10px; border:1px solid #e2e8f0; color:#333;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="background:${colorEtiqueta}; padding:4px 10px; border-radius:20px; font-size:0.7rem; font-weight:700; color:#1e293b; text-transform:uppercase;">
+              ${n.categoria || 'Aviso'}
+            </span>
+            <small style="color:#94a3b8">${n.fecha}</small>
+          </div>
+          <strong style="color:var(--verde-oscuro); display:block; margin-bottom:5px;">${n.titulo}</strong>
+          <p style="font-size:0.9rem; line-height:1.4;">${n.texto}</p>
+          <button onclick="borrarNota(${i})" style="margin-top:10px; background:none; border:none; color:#ef4444; cursor:pointer; font-size:0.75rem;">🗑 Eliminar</button>
+        </div>
+      `;
+    }).join("");
+  }
+  }
+</script>
+
+</body>
+</html>
